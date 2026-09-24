@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python Learning Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🐍</span>
+                <div>
+                    <h1>Python Learning Tracker</h1>
+                    <p class="subtitle">From Zero to Pro — 35 Projects</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <span class="current-time" id="currentTime"></span>
+                <a href="https://github.com" target="_blank" class="github-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Dashboard -->
+    <section class="stats-dashboard">
+        <div class="stat-card">
+            <div class="stat-value" id="totalCompleted">0</div>
+            <div class="stat-label">Completed</div>
+            <div class="stat-bar"><div class="stat-bar-fill" id="completedBar"></div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="inProgress">0</div>
+            <div class="stat-label">In Progress</div>
+            <div class="stat-bar"><div class="stat-bar-fill progress-bar" id="progressBar"></div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="totalTime">0h</div>
+            <div class="stat-label">Total Time</div>
+            <div class="stat-bar"><div class="stat-bar-fill time-bar" id="timeBar"></div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="currentStreak">0</div>
+            <div class="stat-label">Day Streak 🔥</div>
+            <div class="stat-bar"><div class="stat-bar-fill streak-bar" id="streakBar"></div></div>
+        </div>
+    </section>
+
+    <!-- Calendar Heatmap -->
+    <section class="calendar-section">
+        <div class="section-header">
+            <h2>📅 Activity Calendar</h2>
+            <div class="calendar-nav">
+                <button id="prevMonth" class="nav-btn">◀</button>
+                <span id="calendarMonth" class="calendar-month-label"></span>
+                <button id="nextMonth" class="nav-btn">▶</button>
+            </div>
+        </div>
+        <div class="calendar-container">
+            <div class="calendar-weekdays">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+        <div class="calendar-legend">
+            <span>Less</span>
+            <div class="legend-box level-0"></div>
+            <div class="legend-box level-1"></div>
+            <div class="legend-box level-2"></div>
+            <div class="legend-box level-3"></div>
+            <div class="legend-box level-4"></div>
+            <span>More</span>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="filter-section">
+        <div class="section-header">
+            <h2>🚀 Projects</h2>
+        </div>
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All (35)</button>
+            <button class="filter-tab" data-filter="beginner">🟢 Beginner (10)</button>
+            <button class="filter-tab" data-filter="intermediate">🟡 Intermediate (10)</button>
+            <button class="filter-tab" data-filter="advanced">🟠 Advanced (10)</button>
+            <button class="filter-tab" data-filter="expert">🔴 Expert (5)</button>
+        </div>
+        <div class="status-filters">
+            <button class="status-btn active" data-status="all">All</button>
+            <button class="status-btn" data-status="not-started">Not Started</button>
+            <button class="status-btn" data-status="in-progress">In Progress</button>
+            <button class="status-btn" data-status="completed">Completed</button>
+        </div>
+    </section>
+
+    <!-- Projects List -->
+    <section class="projects-section" id="projectsList"></section>
+
+    <!-- Timer Modal -->
+    <div class="modal-overlay" id="timerModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="timerProjectName">Project Timer</h3>
+                <button class="modal-close" id="closeTimer">✕</button>
+            </div>
+            <div class="timer-display">
+                <span id="timerHours">00</span>:<span id="timerMinutes">00</span>:<span id="timerSeconds">00</span>
+            </div>
+            <div class="timer-controls">
+                <button class="timer-btn start" id="startTimer">▶ Start</button>
+                <button class="timer-btn pause" id="pauseTimer" style="display:none">⏸ Pause</button>
+                <button class="timer-btn stop" id="stopTimer">⏹ Stop & Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes Modal -->
+    <div class="modal-overlay" id="notesModal">
+        <div class="modal notes-modal">
+            <div class="modal-header">
+                <h3 id="notesProjectName">Project Notes</h3>
+                <button class="modal-close" id="closeNotes">✕</button>
+            </div>
+            <textarea id="notesTextarea" placeholder="Write your notes, learnings, and code snippets here..."></textarea>
+            <div class="modal-footer">
+                <button class="save-btn" id="saveNotes">💾 Save Notes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Built with 💛 for learning Python — Data saved locally in your browser</p>
+    </footer>
+
+    <script src="js/projects-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
