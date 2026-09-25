@@ -92,10 +92,5 @@ python-learning-tracker/
 | 34 | Personal Finance AI | LLM APIs, pandas |
 | 35 | Full-Stack SaaS App | Full stack |
 
-## 📄 License
-
-MIT License — feel free to fork and customize!
-
----
 
 Made with 💛 for learning Python
